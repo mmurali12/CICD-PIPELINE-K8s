@@ -116,6 +116,11 @@
             systemctl reload sshd.service
 #### (6) login to new user that we created before
             sudo su - ansible
+#### (7) install Ansible
+            sudo amazon-linux-extras install epel
+            sudo yum install ansible -y
+            sudo ansible --version
+#### (8) integrate ansible with jenkins
 
 
 
