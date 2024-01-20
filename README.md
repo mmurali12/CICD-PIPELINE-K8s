@@ -86,3 +86,4 @@
 #### (3) Configure git as shown in fig
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/9f3dabe9-8abc-4b81-93fd-e01395397fed)
 #### (4) Under Build section make sure the Root POM is pom.xml and give goals like "Clean Install" 
+#### (5) Build Job
