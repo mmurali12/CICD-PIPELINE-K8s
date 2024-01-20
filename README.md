@@ -87,3 +87,35 @@
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/9f3dabe9-8abc-4b81-93fd-e01395397fed)
 #### (4) Under Build section make sure the Root POM is pom.xml and give goals like "Clean Install" 
 #### (5) Build Job
+
+## Ansible Server Installation and Setup
+
+#### (1) Launch the Ec2 Instance
+#### (2) connect the Server using mobaxterm
+#### (3) change the hostname
+            sudo su
+            hostnamectl set-hostname ansible-server
+            /bin/bash
+#### (4) Create a new user and add the user to sudo user-list
+            useradd [username]
+            passwd  [username]
+            new password:
+            retype password:
+            # To Add user to Sudo user-list
+            type: visudo
+
+            # find and add the Below shown lines
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/e182b918-44e8-45c5-b5b2-d49811027e02)
+#### (5) Enable the passwordAuthentication 
+##### (i) open the /etc/ssh directory
+            cd /etc/ssh
+##### (ii) open sshd_config file and Find the Below lines and change to "Yes"
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/1fcac5e4-678a-4c77-888b-8ed2e628c169)
+
+##### (iii) If needed Reload the sshd Service
+            systemctl reload sshd.service
+#### (6) login to new user that we created before
+            sudo su - ansible
+
+
+
