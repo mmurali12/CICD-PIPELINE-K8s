@@ -121,6 +121,16 @@
             sudo yum install ansible -y
             sudo ansible --version
 #### (8) integrate ansible with jenkins
+##### (i) Goto jenkins Dashboard
+##### (ii) goto manage jenikns >> plugins >> available plugins >> Download ansible plugin
+##### (iii) goto to manage jenkins >> tools >> ansible installation >> add ansible path
+##### (iv) goto manage jenkins >> credentials >> Stores scoped to Jenkins >> Global >> Add credentials >> username with password >> enter nesessary info and Save
+#### (9) create a folder for dockerfile
+##### (i) create a folder
+            sudo mkdir Docker
+##### (ii) Change ownership of the file
+            sudo chown -R ansible:ansible Docker
+#### (10) Create a New Job
 
 
 
