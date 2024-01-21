@@ -132,7 +132,12 @@
             sudo mkdir Docker
 ##### (ii) Change ownership of the file
             sudo chown -R ansible:ansible Docker
-#### (10) Create a New Job
+#### (10) Goto Jenkins Console
+##### (i) Goto manage jenkins >> System >> Post Build Actions
+##### (ii) Select the Send Build Artifact over SSH
+##### (iii) Enter the Details As Shown Below fig
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/2065ee60-a674-4c4f-b5e4-15e9dc479855)
+##### Appaly And Save ,Build the job to Verify
 
 
 
