@@ -139,5 +139,21 @@
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/2065ee60-a674-4c4f-b5e4-15e9dc479855)
 ##### Appaly And Save ,Build the job to Verify
 
+### Install and Configure Docker on Ansible server
+
+#### (1)  To install the docker
+            sudo yum install docker -y
+#### (2) Add the user to docker group
+            sudo usermod -aG docker ansible
+#### (3) Start the Docker Service
+            sudo service docker start
+#### (4) Create a Docker file for pull the tomcat image from docker hub and copy the jar/war file to tomcat/webapps
+            vim Dockerfile
+
+            FROM tomcat:latest
+            RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
+            COPY ./*.jar /usr/local/tomcat/webapps
+            
+
 
 
