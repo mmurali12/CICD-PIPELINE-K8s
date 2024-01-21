@@ -122,9 +122,11 @@
             sudo ansible --version
 #### (8) integrate ansible with jenkins
 ##### (i) Goto jenkins Dashboard
-##### (ii) goto manage jenikns >> plugins >> available plugins >> Download ansible plugin
-##### (iii) goto to manage jenkins >> tools >> ansible installation >> add ansible path
-##### (iv) goto manage jenkins >> credentials >> Stores scoped to Jenkins >> Global >> Add credentials >> username with password >> enter nesessary info and Save
+##### (ii) goto manage jenikns >> plugins >> available plugins >> Download ansible plugin,Publish over SSH
+##### (iii) goto to manage jenkins >> system >> Publish over SSH >> add SSH Server
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/c7dba0f2-a637-4005-9338-c3e2748c7938) | ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/d3074123-23fd-4c3a-b96b-76733b2f7525)
+
+
 #### (9) create a folder for dockerfile
 ##### (i) create a folder
             sudo mkdir Docker
