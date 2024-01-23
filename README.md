@@ -155,20 +155,20 @@
             COPY ./*.jar /usr/local/tomcat/webapps
 
 ### Create A Ansible PlayBook to Create Docker image and copy image to docker hub
-##### (1) open the hosts file under /etc/ansible/ and add the group name and private ip address of target servers as shown below fig then save
+#### (1) open the hosts file under /etc/ansible/ and add the group name and private ip address of target servers as shown below fig then save
             sudo vim /etc/ansible/hosts
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/9d980577-1d71-43bd-8057-a655bae07753)
-##### (2) copy the keys to the target server using private ip as shown below fig
+#### (2) copy the keys to the target server using private ip as shown below fig
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/7f7ee63a-4462-46d3-8c6a-cb4d00f54eb0)
-##### (3) To Create the Ansible play book use below commands and add the code as shown below fig and save
+#### (3) To Create the Ansible play book use below commands and add the code as shown below fig and save
             vim regapp.yml
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/fa2fa9fc-2823-4f96-af7b-ea2842bd5cd7)
-##### (4) Ansible’s check mode allows you to execute a playbook without applying any alterations to your systems. You can use check mode to test playbooks before implementing them in a production environment.
-#####     To run a playbook in check mode, you can pass the -C or --check flag to the ansible-playbook command:
+#### (4) Ansible’s check mode allows you to execute a playbook without applying any alterations to your systems. You can use check mode to test playbooks before implementing them in a production environment.
+####     To run a playbook in check mode, you can pass the -C or --check flag to the ansible-playbook command:
             ansible-playbook --check regapp.yaml
-##### if any errors happen please do change as per error massage
+#### if any errors happen please do change as per error massage
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/f53b935f-66d9-4820-a968-f825d3412123)
-##### (5) Run the playbook and check the images in Docker
+#### (5) Run the playbook and check the images in Docker
             ansible-playbook regapp.yaml
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/001eb1ab-ce82-46a0-a068-6c31e00f3b1b)
             docker images
@@ -189,19 +189,56 @@
                 command: docker build -t regapp:latest .
                 args:
                   chdir: /opt/Docker
-            
-              - name: Login to Docker Hub
-                docker_login:
-                  username: your_dockerhub_username
-                  password: your_dockerhub_password
-            
+                  
               - name: Create a tag to push the image on to Docker hun
                 command: docker tag regapp:latest murali2712/regapp:latest
             
               - name: To Push docker image to docker hub
                 command: docker push murali2712/regapp:latest
 
-##### 
+##### (3) Check the Playbook and Run it
+            ansible-playbook regapp.yaml --check
+
+            ansible-playbook regapp.yaml
+### Update Jenkins Job to use the ansible playbook
+#### Add the below Command to post-build actions
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/76429ce3-987e-4467-bf0c-a8e394781466)
+
+### Set Up Bootstrap for eksctl
+
+#### (1) Launch the New Server
+#### (2) Connect to server through mobaxterm
+#### (3) install the kubectl
+##### (i) Visit the Amazon EKS website and copy,paste the below command
+            curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.5/2024-01-04/bin/linux/amd64/kubectl
+##### (ii) Goto Root Dir and Check the Installed file i.e; kubectl
+##### (iii) Apply execute permissions to the binary, and Check using "ll" cmd
+            chmod +x ./kubectl
+##### (iv) move the kubectl file to bin because all executable files should be in bin folder.
+            mv kubectl /bin
+##### (v) if You want to know the version of kubectl 
+            kubectl version --output=yaml
+#### (4) Insta;; the eksctl
+##### (i) Install the eksctl using below command and move the file to bin folder
+            curl -sL https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar -xz -C /tmp && sudo mv /tmp/eksctl /bin
+##### (ii) Create a Role for the eks
+###### (a) First Goto IAM in console
+###### (b) Click Create Role
+###### (c) Select Aws Service
+###### (d) Select EC2 and click next
+###### (e) Give the Permissions listed below
+            AdministratorAccess (in prod env we shoud avoid this access,here i give for testing perpose)
+            AmazonEC2FullAccess
+            AWSCloudFormationFullAccess
+            IAMFullAccess
+
+            Give the Role name and Create it
+###### (f) modify the iam role for the server
+            Goto to instance >> Actions >> Security >> modify iam role >> Select the Role that we create now >> update the role
+
+
+
+
 
 
 
