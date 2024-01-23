@@ -153,7 +153,62 @@
             FROM tomcat:latest
             RUN cp -R /usr/local/tomcat/webapps.dist/* /usr/local/tomcat/webapps
             COPY ./*.jar /usr/local/tomcat/webapps
+
+### Create A Ansible PlayBook to Create Docker image and copy image to docker hub
+##### (1) open the hosts file under /etc/ansible/ and add the group name and private ip address of target servers as shown below fig then save
+            sudo vim /etc/ansible/hosts
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/9d980577-1d71-43bd-8057-a655bae07753)
+##### (2) copy the keys to the target server using private ip as shown below fig
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/7f7ee63a-4462-46d3-8c6a-cb4d00f54eb0)
+##### (3) To Create the Ansible play book use below commands and add the code as shown below fig and save
+            vim regapp.yml
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/fa2fa9fc-2823-4f96-af7b-ea2842bd5cd7)
+##### (4) Ansible’s check mode allows you to execute a playbook without applying any alterations to your systems. You can use check mode to test playbooks before implementing them in a production environment.
+#####     To run a playbook in check mode, you can pass the -C or --check flag to the ansible-playbook command:
+            ansible-playbook --check regapp.yaml
+##### if any errors happen please do change as per error massage
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/f53b935f-66d9-4820-a968-f825d3412123)
+##### (5) Run the playbook and check the images in Docker
+            ansible-playbook regapp.yaml
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/001eb1ab-ce82-46a0-a068-6c31e00f3b1b)
+            docker images
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/8cfa6be4-9176-40a5-b72c-ad1556567835)
+
+#### To push the image to Docker Hub
+##### (1) First login to the Docker hub as shown below
+            docker login
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/867e646a-6cb6-4a28-a70a-1982b0a10519)
+##### (2) Modify the ansible playbook and add below code to tag and push the image to Docker hub and save the file.
+            vim regapp.yaml
             
+            ---
+            - hosts: ansibleserver
+
+              tasks:
+              - name: create a docker image
+                command: docker build -t regapp:latest .
+                args:
+                  chdir: /opt/Docker
+            
+              - name: Login to Docker Hub
+                docker_login:
+                  username: your_dockerhub_username
+                  password: your_dockerhub_password
+            
+              - name: Create a tag to push the image on to Docker hun
+                command: docker tag regapp:latest murali2712/regapp:latest
+            
+              - name: To Push docker image to docker hub
+                command: docker push murali2712/regapp:latest
+
+##### 
+
+
+
+
+
+
+
 
 
 
