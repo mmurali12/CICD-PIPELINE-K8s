@@ -1,4 +1,4 @@
-# CICD-PIPELINE-K8s
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/8d9f0b51-7938-4056-9d43-d10991bb610a)# CICD-PIPELINE-K8s
 ## CI CD Pipeline to Deploy to Kubernetes Cluster Using Jenkins
 ## Flow Diagram 
 
@@ -218,7 +218,7 @@
             mv kubectl /bin
 ##### (v) if You want to know the version of kubectl 
             kubectl version --output=yaml
-#### (4) Insta;; the eksctl
+#### (4) Install the eksctl
 ##### (i) Install the eksctl using below command and move the file to bin folder
             curl -sL https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz | tar -xz -C /tmp && sudo mv /tmp/eksctl /bin
 ##### (ii) Create a Role for the eks
@@ -235,6 +235,17 @@
             Give the Role name and Create it
 ###### (f) modify the iam role for the server
             Goto to instance >> Actions >> Security >> modify iam role >> Select the Role that we create now >> update the role
+
+### Setup the Kubernetes using eksctl
+#### (1) create a cluster as shown below
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/cf017f65-f402-4007-8a06-74283804f6cb)
+
+            eksctl create cluster --name murali-cluster \
+            > --region ap-south-1 \
+            > --node-type t2.small \
+            >
+            
+
 
 
 
