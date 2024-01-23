@@ -1,4 +1,4 @@
-![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/8d9f0b51-7938-4056-9d43-d10991bb610a)# CICD-PIPELINE-K8s
+# CICD-PIPELINE-K8s
 ## CI CD Pipeline to Deploy to Kubernetes Cluster Using Jenkins
 ## Flow Diagram 
 
@@ -244,8 +244,7 @@
             > --region ap-south-1 \
             > --node-type t2.small \
             >
-            
-
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/8d9f0b51-7938-4056-9d43-d10991bb610a)
 
 
 
