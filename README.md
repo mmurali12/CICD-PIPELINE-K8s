@@ -242,9 +242,34 @@
 
             eksctl create cluster --name murali-cluster \
             > --region ap-south-1 \
-            > --node-type t2.small \
-            >
-![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/8d9f0b51-7938-4056-9d43-d10991bb610a)
+            > --node-type t2.small
+#### (2) verify the cluster
+            kubectl get nodes
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/7f76cae4-c6d2-4865-8424-ab89ccfd521e)
+#### (3) Refer the Kubernetes Documentation and create the Deployment manifest file
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/1cb4ce28-797e-4609-bf7f-34bf333cb1ba)
+#### (4) Create a Service manifest file
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/1feae5ba-a016-4c8c-a5d9-a6c16dfc8559)
+
+### Integrate Bootstrap server with ansible
+
+#### (1) Enable the Password Authentication 
+            vim /etc/ssh/sshd_config
+
+            change PasswordAuthentication yes
+#### (2) update the password for root users
+            passwd root
+            new password:
+            retype-password:
+#### (3) Goto the ansible server and add the one more host group under hosts file as shown below
+            [note: please add private ip of the server]
+            vim /etc/ansible/hosts
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/f95357ce-af99-4851-874f-0bd729dfcc0d)
+####
+
+            
+
+
 
 
 
