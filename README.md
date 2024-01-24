@@ -287,6 +287,12 @@
                   (or)
             kubectl get all
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/312fcafb-1160-4ce5-b2cf-4970488eb9b5)
+#### (5) open the browser and paste the DNS of the server and check the Result
+
+### Create a Jenkins Job for kubernetes
+
+#### (1)
+
 
 
             
