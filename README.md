@@ -256,7 +256,8 @@
 #### (1) Enable the Password Authentication 
             vim /etc/ssh/sshd_config
 
-            change PasswordAuthentication yes
+            change PasswordAuthentication yes and,
+                   RootUserLogin yes
 #### (2) update the password for root users
             passwd root
             new password:
@@ -265,7 +266,28 @@
             [note: please add private ip of the server]
             vim /etc/ansible/hosts
 ![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/f95357ce-af99-4851-874f-0bd729dfcc0d)
-####
+#### (4) Try to Login into bootstrap/kubernetes server through ansible server 
+            ssh-copy-id root@privateip
+            ssh root@privateip
+#### (5) Afer Successful Login ,if need to logout use exit cmd
+
+### Create a Ansible Playbook to Run Deployment and Service manifest Files
+
+#### (1) create a new playbook as shown below
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/a3449296-45c7-45e4-b25d-1e329f72efaf)
+#### (2) Goto K8s Server and check the pods and services are running default before run the playbook
+            kubectl get pods
+            kubectl get all
+#### (3) Check the BluePrint that planned in playbook by execute the below command
+            ansible-playbook kube-deploy.yaml --ckeck
+#### (4) Run the Playbook and check the Result
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/a0459e52-b1f2-4cb4-94d2-321ae36b1c31)
+
+            Kubectl get pods
+                  (or)
+            kubectl get all
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/312fcafb-1160-4ce5-b2cf-4970488eb9b5)
+
 
             
 
