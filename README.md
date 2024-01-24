@@ -307,7 +307,12 @@
 
 
 
+## Clean Up Everything
+            kubectl delete deployment.apps/[deployment name]
 
+            kubectl delete service/[service name]
+
+            eksctl delete cluster [clustername] --region [region]
             
 
 
