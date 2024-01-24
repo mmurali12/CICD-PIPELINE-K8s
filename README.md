@@ -291,7 +291,20 @@
 
 ### Create a Jenkins Job for kubernetes
 
-#### (1)
+#### (1) Create sub job for CD 
+##### (i) add option Send build artifacts over SSH under Post Build Action and enter the code as Shown below
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/6c0d014e-58b7-46c1-b417-db6cb157936f)
+
+#### (1) Modify the main job 
+##### (i) add the poll SCM as
+            * * * * *
+            its trigger every change
+##### (ii) Add Another option like Build other projects under Post Build Action and select the sub job as shown below
+![image](https://github.com/mmurali12/CICD-PIPELINE-K8s/assets/102593989/d9b07bb8-9005-4279-888e-851a9e286c3a)
+
+##### (iii) apply,save
+##### (iv) create a test file and commit in github then you can find the job automatically triggring 
+
 
 
 
